@@ -24,7 +24,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      
+      <head>
+        <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet" />
+        <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+      </head>
       <body className={inter.className}>
         <Providers>
           <header className="header">

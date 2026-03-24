@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import SchemaLD from '@/components/SchemaLD'
 import Chatbot from '@/components/Chatbot'
 
@@ -39,15 +40,31 @@ export default function Page() {
           <div className="card">
             <h3>Schedule Meeting</h3>
             <p style={{ margin: '1rem 0', opacity: 0.7 }}>Book a time to chat about collaboration or technical projects.</p>
-            <a 
-              href="https://calendar.app.google/4RPKuwADFN3LxK6U7"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="button" 
-              style={{ width: '100%', textAlign: 'center' }}
-            >
-              Book via Google Calendar
-            </a>
+            <div dangerouslySetInnerHTML={{ __html: `
+              <!-- Google Calendar Appointment Scheduling begin -->
+              <div id="permanent-calendar-card-target"></div>
+              <script>
+              (function() {
+                var loadBtn = function() {
+                  var target = document.getElementById('permanent-calendar-card-target');
+                  if (window.calendar && window.calendar.schedulingButton && target) {
+                    if (target.innerHTML === '') {
+                      window.calendar.schedulingButton.load({
+                        url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1SGRFwk0XvGBbjqTSEtyayCHKJenkGu4ipaHsDBMbGjKtIrlhTxgs_WcgIgpWjd5TW3GDYMRLu?gv=true',
+                        color: '#039BE5',
+                        label: 'Book an appointment',
+                        target,
+                      });
+                    }
+                  } else {
+                    setTimeout(loadBtn, 200);
+                  }
+                };
+                loadBtn();
+              })();
+              </script>
+              <!-- end Google Calendar Appointment Scheduling -->
+            ` }} />
           </div>
         </div>
       </section>

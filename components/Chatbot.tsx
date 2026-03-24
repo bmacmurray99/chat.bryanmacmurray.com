@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -85,7 +86,10 @@ export default function Chatbot() {
             <div className="message-content">
               {msg.role === 'assistant' ? (
                 <div className="markdown-content">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  <ReactMarkdown 
+                    remarkPlugins={[remarkGfm]} 
+                    rehypePlugins={[rehypeRaw]}
+                  >
                     {msg.content}
                   </ReactMarkdown>
                 </div>

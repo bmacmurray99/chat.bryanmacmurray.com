@@ -96,8 +96,36 @@ export default function ResumePage() {
         </p>
       </section>
 
-      <footer style={{ textAlign: 'center', paddingTop: '2rem', borderTop: '1px solid var(--border)' }}>
-        <a href="/" className="button">Back to Assistant</a>
+      <footer style={{ textAlign: 'center', paddingTop: '2rem', borderTop: '1px solid var(--border)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
+        <div>
+          <h3 style={{ marginBottom: '1rem', fontSize: '1.2rem' }}>Ready to chat?</h3>
+          <div dangerouslySetInnerHTML={{ __html: `
+            <!-- Google Calendar Appointment Scheduling begin -->
+            <div id="resume-calendar-card-target"></div>
+            <script>
+            (function() {
+              var loadBtn = function() {
+                var target = document.getElementById('resume-calendar-card-target');
+                if (window.calendar && window.calendar.schedulingButton && target) {
+                  if (target.innerHTML === '') {
+                    window.calendar.schedulingButton.load({
+                      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1SGRFwk0XvGBbjqTSEtyayCHKJenkGu4ipaHsDBMbGjKtIrlhTxgs_WcgIgpWjd5TW3GDYMRLu?gv=true',
+                      color: '#039BE5',
+                      label: 'Book an appointment',
+                      target,
+                    });
+                  }
+                } else {
+                  setTimeout(loadBtn, 200);
+                }
+              };
+              loadBtn();
+            })();
+            </script>
+            <!-- end Google Calendar Appointment Scheduling -->
+          ` }} />
+        </div>
+        <a href="/" style={{ color: 'var(--accent)', textDecoration: 'underline', fontSize: '0.9rem' }}>Return to Assistant</a>
       </footer>
     </div>
   )

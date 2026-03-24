@@ -6,17 +6,26 @@
 ---
 
 ## Skills
-* n8n 
-* Python 
-* Prompt Engineering 
-* OpenAI API / LLMs (ChatGPT, Gemini, Claude) 
-* Agile Development (Azure DevOps) 
-* JavaScript / NodeJS 
-* MCP (Model Context Protocol) 
-* API & Webhook Integration 
-* Healthcare Workflows 
-* SQL / BigQuery 
-* Google Analytics 
+*  n8n 
+*  Python 
+*  Prompt Engineering 
+*  OpenAI API / LLMs (ChatGPT, Gemini, Claude) 
+*  Agile Development (Azure DevOps) 
+*  JavaScript / NodeJS 
+*  MCP (Model Context Protocol) 
+*  API & Webhook Integration 
+*  Healthcare Workflows 
+*  SQL / BigQuery 
+*  Google Analytics 
+*  Google Tag Manager
+*  Looker Studio
+*  Adobe Analytics
+*  ScreamingFrog SEO Spider
+*  Google Tag Manager
+*  Looker Studio
+*  Adobe Analytics
+*  ScreamingFrog SEO Spider
+*  Structured Data (Schema.org JSON-LD)
 
 ---
 
@@ -48,7 +57,15 @@
 *   **SEO Manager** | Genuine | 08/2021 – 03/2022
 *   **Senior SEO Strategist** | Charles River Interactive | 04/2019 – 07/2021
 *   **SEO Specialist** | ESM Digital | 03/2018 – 02/2019
-
+*  **SEO Specialist** | eGeneration Marketing | 02/2016-02/2018
+    - **Company Description**: eGeneration Marketing is a legal lead generation firm that operates websites in the personal injury, disability claim, TCPA and FDCPA spaces. 
+    - **What I Did There:**I helped eGeneration Marketing sell leads by developing content strategies, producing the content, and collaborating across sales, paid media, and client services to produce qualified leads for legal services. 
+Edited, formatted, and uploaded on-site content for five domains using HTML, CSS, Drupal, Word, and Photoshop.
+Implemented testing and improvement of on-page SEO based on competitor research, site analytics and market research.
+Developed and executed legal lead generating content strategies in the legal marketing space
+Helped prepare weekly, monthly and quarterly reports on domain performance, lead generation, link building and on-site
+content generation using Google Analytics, Microsoft Excel and internal analytics tools.
+Assisted in maintaining forums and social media accounts (Twitter, Facebook) for eGeneration domains.
 ---
 
 ## Certifications
