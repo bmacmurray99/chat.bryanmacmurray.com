@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState, useRef, useEffect } from 'react'
-import { useWebMCP } from '@/lib/webmcp'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
@@ -21,7 +20,6 @@ export default function Chatbot() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [sessionId] = useState(() => Math.random().toString(36).substring(7))
-  const { registerAction, unregisterAction } = useWebMCP()
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -30,23 +28,6 @@ export default function Chatbot() {
   useEffect(() => {
     scrollToBottom()
   }, [messages])
-
-  useEffect(() => {
-    const sendMessageAction = {
-      name: 'sendMessage',
-      description: 'Send a message to the chatbot',
-      parameters: {
-        message: { type: 'string', description: 'The message to send' }
-      },
-      callback: async ({ message }: { message: string }) => {
-        await sendMessage(message)
-        return 'Message sent successfully'
-      }
-    }
-
-    registerAction(sendMessageAction)
-    return () => unregisterAction('sendMessage')
-  }, [registerAction, unregisterAction])
 
   const sendMessage = async (text: string, attachedFile?: File | null) => {
     if (!text.trim() && !attachedFile) return
@@ -80,8 +61,6 @@ export default function Chatbot() {
       }
 
       const data = await response.json()
-      // n8n response format varies, but usually it's { output: "..." } or similar
-      // If it's the standard chat node, it's often in "output"
       const assistantResponse = data.output || data.response || data.text || JSON.stringify(data)
       
       setMessages((prev) => [...prev, { role: 'assistant', content: assistantResponse }])
@@ -137,7 +116,7 @@ export default function Chatbot() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask anything about MCP..."
+            placeholder="Ask anything..."
             className="chat-input"
             disabled={loading}
           />
