@@ -8,6 +8,9 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Bryan MacMurray | Chat With My Resume!',
   description: 'Chat with Bryan MacMurray\'s resume and schedule an appointment with him.',
+  verification: {
+    google: 'E8ngRUSWesKgEfcWMJogMUzV6Yx8F3cAxDGv72VymjU',
+  },
 }
 
 export const viewport: Viewport = {
@@ -21,6 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      
       <body className={inter.className}>
         <Providers>
           <header className="header">
