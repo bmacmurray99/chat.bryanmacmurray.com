@@ -4,7 +4,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  trailingSlash: true,
+  // We disabled trailingSlash to avoid issues with .md files in the public folder
+  trailingSlash: false,
 };
 
 module.exports = nextConfig;
