@@ -1,4 +1,4 @@
-// File: /var/home/bazzite/Documents/gemini/contextaware.xyz/chat.bryanmacmurray.com/app/layout.tsx
+// File: /var/home/bazzite/Documents/gemini/chat.bryanmacmurray.com/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
