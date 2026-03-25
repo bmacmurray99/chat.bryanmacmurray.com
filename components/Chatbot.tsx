@@ -11,7 +11,17 @@ interface Message {
   file?: string
 }
 
+interface LeadData {
+  name: string
+  email: string
+  company?: string
+}
+
 export default function Chatbot() {
+  const [isGated, setIsGated] = useState(true)
+  const [leadData, setLeadData] = useState<LeadData>({ name: '', email: '', company: '' })
+  const [gateError, setGateError] = useState('')
+  
   const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: 'Hi there! Chat with me to ask questions about Bryan MacMurray\'s experience or to schedule an appointment.' }
   ])
@@ -22,6 +32,13 @@ export default function Chatbot() {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [sessionId] = useState(() => Math.random().toString(36).substring(7))
 
+  useEffect(() => {
+    const savedLead = localStorage.getItem('lead_data')
+    if (savedLead) {
+      setIsGated(false)
+    }
+  }, [])
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
@@ -29,6 +46,39 @@ export default function Chatbot() {
   useEffect(() => {
     scrollToBottom()
   }, [messages])
+
+  const isWorkEmail = (email: string) => {
+    const freeProviders = [
+      'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 
+      'icloud.com', 'me.com', 'msn.com', 'live.com', 'aol.com',
+      'protonmail.com', 'zoho.com', 'mail.com'
+    ]
+    const domain = email.split('@')[1]?.toLowerCase()
+    return domain && !freeProviders.includes(domain)
+  }
+
+  const handleGateSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setGateError('')
+
+    if (!leadData.name.trim()) {
+      setGateError('Name is required.')
+      return
+    }
+
+    if (!leadData.email.trim()) {
+      setGateError('Email is required.')
+      return
+    }
+
+    if (!isWorkEmail(leadData.email)) {
+      setGateError('Please provide a valid work email address.')
+      return
+    }
+
+    localStorage.setItem('lead_data', JSON.stringify(leadData))
+    setIsGated(false)
+  }
 
   const sendMessage = async (text: string, attachedFile?: File | null) => {
     if (!text.trim() && !attachedFile) return
@@ -48,6 +98,15 @@ export default function Chatbot() {
       const formData = new FormData()
       formData.append('chatInput', text)
       formData.append('sessionId', sessionId)
+      
+      const savedLead = localStorage.getItem('lead_data')
+      if (savedLead) {
+        const lead = JSON.parse(savedLead)
+        formData.append('userName', lead.name)
+        formData.append('userEmail', lead.email)
+        formData.append('userCompany', lead.company || '')
+      }
+
       if (attachedFile) {
         formData.append('file', attachedFile)
       }
@@ -80,6 +139,57 @@ export default function Chatbot() {
 
   return (
     <div className="chatbot-container">
+      {isGated && (
+        <div className="gate-overlay">
+          <form onSubmit={handleGateSubmit} className="gate-form">
+            <h2>Welcome!</h2>
+            <p>Please provide your details to start chatting with Bryan's resume assistant.</p>
+            
+            <div className="gate-input-group">
+              <label htmlFor="name">Full Name *</label>
+              <input 
+                id="name"
+                type="text" 
+                className="gate-input" 
+                placeholder="John Doe"
+                value={leadData.name}
+                onChange={(e) => setLeadData({...leadData, name: e.target.value})}
+                required
+              />
+            </div>
+
+            <div className="gate-input-group">
+              <label htmlFor="email">Work Email *</label>
+              <input 
+                id="email"
+                type="email" 
+                className="gate-input" 
+                placeholder="john@company.com"
+                value={leadData.email}
+                onChange={(e) => setLeadData({...leadData, email: e.target.value})}
+                required
+              />
+            </div>
+
+            <div className="gate-input-group">
+              <label htmlFor="company">Company (Optional)</label>
+              <input 
+                id="company"
+                type="text" 
+                className="gate-input" 
+                placeholder="Acme Corp"
+                value={leadData.company}
+                onChange={(e) => setLeadData({...leadData, company: e.target.value})}
+              />
+            </div>
+
+            {gateError && <div className="gate-error">{gateError}</div>}
+
+            <button type="submit" className="gate-submit">Unlock Chatbot</button>
+          </form>
+        </div>
+      )}
+
       <div className="messages-area">
         {messages.map((msg, i) => (
           <div key={i} className={`message ${msg.role}`}>
@@ -122,7 +232,7 @@ export default function Chatbot() {
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask anything..."
             className="chat-input"
-            disabled={loading}
+            disabled={loading || isGated}
           />
           <label className="file-upload-btn" title="Upload a file">
             📎
@@ -131,10 +241,10 @@ export default function Chatbot() {
               ref={fileInputRef}
               onChange={(e) => setFile(e.target.files?.[0] || null)}
               style={{ display: 'none' }}
-              disabled={loading}
+              disabled={loading || isGated}
             />
           </label>
-          <button type="submit" className="send-btn" disabled={loading || (!input.trim() && !file)}>
+          <button type="submit" className="send-btn" disabled={loading || isGated || (!input.trim() && !file)}>
             Send
           </button>
         </div>
