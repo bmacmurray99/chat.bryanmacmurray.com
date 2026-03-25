@@ -17,7 +17,7 @@ export default function Page() {
   return (
     <div className="home-page-container">
       <SchemaLD data={schemaData} />
-      <section className="fade-in hero-section">
+      <section className="hero-section">
         <h1 className="hero-heading">
           About Bryan MacMurray
         </h1>
@@ -28,7 +28,7 @@ export default function Page() {
 
       <Chatbot />
 
-      <section className="fade-in additional-content">
+      <section className="additional-content">
         <h2 style={{ marginBottom: '2rem', textAlign: 'center' }}>Get in touch</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', textAlign: 'left' }}>
           <div className="card">
