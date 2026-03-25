@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { Providers } from '@/components/Providers'
+import Header from '@/components/Header'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,22 +23,37 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID
+
   return (
     <html lang="en">
       <head>
+        {gtmId && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','${gtmId}');
+              `,
+            }}
+          />
+        )}
         <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet" />
         <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
       </head>
       <body className={inter.className}>
+        {gtmId && (
+          <noscript
+            dangerouslySetInnerHTML={{
+              __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=${gtmId}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
+            }}
+          />
+        )}
         <Providers>
-          <header className="header">
-            <div className="container nav">
-              <a href="/" className="logo">Bryan MacMurray</a>
-              <nav>
-                <a href="/resume" style={{ fontSize: '0.9rem' }}>Resume</a>
-              </nav>
-            </div>
-          </header>
+          <Header />
           <main className="container">
             {children}
           </main>

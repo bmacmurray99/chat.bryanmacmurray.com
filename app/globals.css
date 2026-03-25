@@ -38,6 +38,9 @@ a {
   border-bottom: 1px solid var(--border);
   padding: 1.5rem 0;
   margin-bottom: 3rem;
+  background: var(--background);
+  position: relative;
+  z-index: 1000;
 }
 
 .nav {
@@ -52,6 +55,92 @@ a {
   background: linear-gradient(to right, var(--accent), var(--accent-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  position: relative;
+  z-index: 1001;
+}
+
+.desktop-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Hamburger Toggle */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+.hamburger .bar {
+  width: 2rem;
+  height: 0.25rem;
+  background: var(--foreground);
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+}
+
+.hamburger .bar.open:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.hamburger .bar.open:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.hamburger .bar.open:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+/* Mobile Nav Overlay */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 10, 10, 0.98);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.mobile-nav.open {
+  transform: translateX(0);
+}
+
+.mobile-nav a {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.mobile-nav a:hover {
+  color: var(--accent);
+}
+
+.close-menu {
+  margin-top: 2rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .card {
@@ -470,8 +559,16 @@ a {
   }
 
   .nav {
-    flex-direction: column;
-    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
   }
 
   .logo {
