@@ -9,7 +9,7 @@ export default function ResumePage() {
   }
 
   return (
-    <div style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem 0', color: '#e0e0e0' }}>
+    <div className="resume-container">
       <SchemaLD data={schemaData} />
       
       <header style={{ textAlign: 'center', marginBottom: '3rem', borderBottom: '1px solid var(--border)', paddingBottom: '2rem' }}>
@@ -77,7 +77,7 @@ export default function ResumePage() {
         </div>
       </section>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
         <section>
           <h2 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--accent)', borderBottom: '1px solid #333', paddingBottom: '0.5rem' }}>Certifications</h2>
           <ul style={{ paddingLeft: '1.2rem', opacity: 0.9, lineHeight: '1.8' }}>
@@ -97,11 +97,11 @@ export default function ResumePage() {
       </section>
 
       <footer style={{ textAlign: 'center', paddingTop: '2rem', borderTop: '1px solid var(--border)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
-        <div>
+        <div style={{ width: '100%', maxWidth: '100%', overflowX: 'hidden' }}>
           <h3 style={{ marginBottom: '1rem', fontSize: '1.2rem' }}>Ready to chat?</h3>
           <div dangerouslySetInnerHTML={{ __html: `
             <!-- Google Calendar Appointment Scheduling begin -->
-            <div id="resume-calendar-card-target"></div>
+            <div id="resume-calendar-card-target" style="display: flex; justify-content: center; min-width: 0;"></div>
             <script>
             (function() {
               var loadBtn = function() {
