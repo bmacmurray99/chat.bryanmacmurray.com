@@ -73,3 +73,4 @@ next build && (rm -rf dist || true) && mv out dist
 | `remark-gfm` | Adds GitHub Flavored Markdown (tables, task lists) support. |
 | `rehype-raw` | Allows rendering of raw HTML within Markdown (used for bot UI elements). |
 | `typescript` | Ensures type safety across the application. |
+| `analytics` | Abstracted analytics engine for managing tracking containers (GTM). |

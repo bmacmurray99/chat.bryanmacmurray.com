@@ -7,25 +7,22 @@ This project is a personal portfolio and interactive resume for Bryan MacMurray.
 - **Static Resume:** A dedicated resume page (`/resume`) and markdown versions available in the `public/` folder (`resume.md`, `resume-full.md`).
 - **Google Calendar Integration:** Embedded appointment scheduling for booking meetings.
 - **SEO/GEO Optimization:** Includes Schema.org structured data (JSON-LD) for better visibility in search engines and AI agents.
-
-- **Analytics & Monitoring:** Integrated **Microsoft Clarity** for user behavior recording and heatmaps, and the **Analytics** library for **Google Analytics (GA4)** and **Google Tag Manager (GTM)** tracking.
+- **Analytics:** Integrated **Google Tag Manager (GTM)** via the **Analytics** library for flexible tracking and event management.
 
 ### Tech Stack
 - **Framework:** Next.js 14 (App Router)
 - **Language:** TypeScript
 - **Styling:** Vanilla CSS (globals.css)
 - **AI Integration:** n8n (Webhook), React Markdown (for bot responses)
-- **Analytics:** Microsoft Clarity (`@microsoft/clarity`), Analytics Engine (`analytics`, `@analytics/google-analytics`, `@analytics/google-tag-manager`)
+- **Analytics:** Analytics Engine (`analytics`, `@analytics/google-tag-manager`)
 - **Deployment:** Static Export (`out/` directory, renamed to `dist/`)
 
 ---
 
 ## Analytics Configuration
 
-The site uses a unified analytics engine and Microsoft Clarity. Configuration is handled through environment variables (see `.env.example`):
+The site uses the `analytics` library with the Google Tag Manager plugin. Configuration is handled through environment variables (see `.env.example`):
 
-- **Microsoft Clarity:** Initialized in `Providers.tsx` using `NEXT_PUBLIC_CLARITY_ID`.
-- **Google Analytics (GA4):** Configured via `NEXT_PUBLIC_GA_ID` in `lib/analytics.ts`.
 - **Google Tag Manager (GTM):** Configured via `NEXT_PUBLIC_GTM_ID` in `lib/analytics.ts`.
 
 Tracking is initialized in the `Providers` component to ensure client-side execution.
