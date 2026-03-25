@@ -29,6 +29,7 @@ export default function Chatbot() {
   const [file, setFile] = useState<File | null>(null)
   const [loading, setLoading] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const messagesAreaRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [sessionId] = useState(() => Math.random().toString(36).substring(7))
 
@@ -40,9 +41,9 @@ export default function Chatbot() {
   }, [])
 
   const scrollToBottom = () => {
-    // Only scroll if there are new messages beyond the initial greeting
-    if (messages.length > 1) {
-      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    // Scroll only the messages area, not the whole page
+    if (messagesAreaRef.current && messages.length > 1) {
+      messagesAreaRef.current.scrollTop = messagesAreaRef.current.scrollHeight
     }
   }
 
@@ -193,7 +194,7 @@ export default function Chatbot() {
         </div>
       )}
 
-      <div className="messages-area">
+      <div className="messages-area" ref={messagesAreaRef}>
         {messages.map((msg, i) => (
           <div key={i} className={`message ${msg.role}`}>
             <div className="message-content">
