@@ -15,21 +15,21 @@ export default function Page() {
   }
 
   return (
-    <div>
+    <div className="home-page-container">
       <SchemaLD data={schemaData} />
-      <section className="fade-in" style={{ textAlign: 'center', marginBottom: '3rem' }}>
-        <h1 style={{ fontSize: '3.5rem', marginBottom: '1.5rem', background: 'linear-gradient(to right, var(--accent), var(--accent-secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+      <section className="fade-in hero-section">
+        <h1 className="hero-heading">
           About Bryan MacMurray
         </h1>
-        <p style={{ fontSize: '1.25rem', opacity: 0.8, maxWidth: '700px', margin: '0 auto' }}>
+        <p className="hero-text">
           Technical SEO and AI developer with experience in automating workflows, prompt engineering and web development.
         </p>
       </section>
 
       <Chatbot />
 
-      <section style={{ marginTop: '5rem', textAlign: 'center' }} className="fade-in">
-        <h2 style={{ marginBottom: '2rem' }}>Get in touch</h2>
+      <section className="fade-in additional-content">
+        <h2 style={{ marginBottom: '2rem', textAlign: 'center' }}>Get in touch</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', textAlign: 'left' }}>
           <div className="card">
             <h3>Resume</h3>
@@ -66,15 +66,13 @@ export default function Page() {
             ` }} />
           </div>
         </div>
+
+        <div className="card" style={{ marginTop: '5rem', textAlign: 'center' }}>
+          <h3>How does this chatbot work?</h3>
+          <p style={{ margin: '1rem 0', opacity: 0.7 }}>This chatbot was built with n8n, Gemini using RAG. The frontend is created using NextJS.</p>
+          <a href="/chatbot-details" style={{ color: 'var(--accent)', fontWeight: 600 }}>Making The Chatbot →</a>
+        </div>
       </section>
-      <section style={{ marginTop: '5rem', textAlign: 'center' }} className="fade-in">
-            <div className="card">
-            <h3>How does this chatbot work?</h3>
-            <p style={{ margin: '1rem 0', opacity: 0.7 }}>This chatbot was built with n8n, Gemini using RAG. The frontend is created using NextJS.</p>
-            <a href="/chatbot-details" style={{ color: 'var(--accent)', fontWeight: 600 }}>Making The Chatbot →</a>
-          </div>
-       </section>
     </div>
-    
   )
 }
