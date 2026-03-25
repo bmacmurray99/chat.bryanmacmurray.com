@@ -199,6 +199,7 @@ a {
   opacity: 0.7;
   transition: opacity 0.2s;
   user-select: none;
+  display: none;
 }
 
 .file-upload-btn:hover {

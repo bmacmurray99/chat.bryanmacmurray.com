@@ -22,8 +22,7 @@ export default function Page() {
           About Bryan MacMurray
         </h1>
         <p style={{ fontSize: '1.25rem', opacity: 0.8, maxWidth: '700px', margin: '0 auto' }}>
-          I am a developer specializing in AEO/GEO, agentic workflows and Model Context Protocols. 
-          Use the assistant below to learn more about my work or schedule a meeting.
+          Technical SEO and AI developer with experience in automating workflows, prompt engineering and web development. Chat with the assistant below to learn more about my work or to schedule an appointment.
         </p>
       </section>
 
@@ -68,6 +67,14 @@ export default function Page() {
           </div>
         </div>
       </section>
+      <section style={{ marginTop: '5rem', textAlign: 'center' }} className="fade-in">
+            <div className="card">
+            <h3>How does this chatbot work?</h3>
+            <p style={{ margin: '1rem 0', opacity: 0.7 }}>This chatbot was built with n8n, Gemini using RAG. The frontend is created using NextJS.</p>
+            <a href="/resume" style={{ color: 'var(--accent)', fontWeight: 600 }}>Making The Chatbot →</a>
+          </div>
+       </section>
     </div>
+    
   )
 }
