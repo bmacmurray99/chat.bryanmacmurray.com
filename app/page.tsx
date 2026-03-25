@@ -17,15 +17,7 @@ export default function Page() {
   return (
     <div className="home-page-container">
       <SchemaLD data={schemaData} />
-      <section className="hero-section">
-        <h1 className="hero-heading">
-          About Bryan MacMurray
-        </h1>
-        <p className="hero-text">
-          Technical SEO and AI developer with experience in automating workflows, prompt engineering and web development.
-        </p>
-      </section>
-
+      
       <Chatbot />
 
       <section className="additional-content">
