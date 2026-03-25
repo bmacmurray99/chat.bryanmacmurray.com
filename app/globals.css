@@ -603,6 +603,7 @@ a {
 
   .chat-input-area {
     padding: 1rem;
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 20px)); /* Raise input on mobile and handle safe areas */
   }
 
   .gate-overlay {
