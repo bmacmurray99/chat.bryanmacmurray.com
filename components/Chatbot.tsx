@@ -151,7 +151,7 @@ export default function Chatbot() {
 
       // Detect raw image URLs and convert them to markdown image syntax
       const imageRegex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp|svg|bmp))(?!\))/gi
-      assistantResponse = assistantResponse.replace(imageRegex, (url) => `![Image](${url})`)
+      assistantResponse = assistantResponse.replace(imageRegex, (url: string) => `![Image](${url})`)
 
       setMessages((prev) => [...prev, { role: 'assistant', content: assistantResponse }])
     } catch (error) {
