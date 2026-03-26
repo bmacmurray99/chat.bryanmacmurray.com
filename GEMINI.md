@@ -70,8 +70,19 @@ npm run lint
 
 ### Chatbot Logic
 - The chatbot communicates with a specific n8n webhook. 
-- It supports markdown rendering in responses using `react-markdown` and `rehype-raw`.
+- **Image Rendering:** Supports markdown image rendering (`![alt](url)`). Includes a post-processing step to detect raw image URLs and convert them to markdown syntax.
+- **Image Styling:** Images are styled to be responsive, limited to **40% width** of the chat container, and are wrapped in anchor tags to **open in a new tab** upon clicking.
+- **Markdown Parsing:** Uses `react-markdown` with `remark-gfm` and `rehype-raw`. Added a regex fix to ensure double-newlines for proper paragraph and image separation in bot responses.
 - It includes basic file upload capabilities for providing context to the AI (handled via `FormData`).
+
+### Production Configuration
+- **Webhooks:** The production gate webhook is configured to `https://n8n.contextaware.xyz/webhook/a444ecf0-d162-4cf4-a546-89fcbfd3624d`.
+- **TypeScript:** Strict typing is enforced in the chatbot component, specifically for regex replacement callbacks to ensure successful production builds.
+
+### Project Management
+- **Notion Integration:** A dedicated Notion project and tasks database are used to track development progress.
+  - **Project Page:** [Website Project: AI Portfolio](https://www.notion.so/32f62f842a328101b94af40f1930d7d1)
+  - **Tasks Database:** [Project Tasks](https://www.notion.so/7014af3c5fea4b3d90a129da518fc2c7)
 
 ### Data Practices
 - **SEO:** Every page should include relevant `SchemaLD` components.
