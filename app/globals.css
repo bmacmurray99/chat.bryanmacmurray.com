@@ -522,12 +522,18 @@ a {
 }
 
 .markdown-content img {
-  max-width: 100%;
+  max-width: 40%;
   height: auto;
   border-radius: 8px;
   margin: 0.75rem 0;
   border: 1px solid var(--border);
   display: block;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.markdown-content img:hover {
+  opacity: 0.9;
 }
 
 .markdown-content table {

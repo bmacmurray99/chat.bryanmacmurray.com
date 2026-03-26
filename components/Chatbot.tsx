@@ -229,6 +229,13 @@ export default function Chatbot() {
                   <ReactMarkdown 
                     remarkPlugins={[remarkGfm]} 
                     rehypePlugins={[rehypeRaw]}
+                    components={{
+                      img: ({node, ...props}) => (
+                        <a href={props.src} target="_blank" rel="noopener noreferrer">
+                          <img {...props} alt={props.alt || 'Chatbot Image'} />
+                        </a>
+                      )
+                    }}
                   >
                     {msg.content}
                   </ReactMarkdown>
