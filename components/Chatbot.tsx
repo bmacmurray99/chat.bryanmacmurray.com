@@ -61,7 +61,7 @@ export default function Chatbot() {
     return domain && !freeProviders.includes(domain)
   }
 
-  const handleGateSubmit = (e: React.FormEvent) => {
+  const handleGateSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setGateError('')
 
@@ -78,6 +78,25 @@ export default function Chatbot() {
     if (!isWorkEmail(leadData.email)) {
       setGateError('Please provide a valid work email address.')
       return
+    }
+
+    // Call the new webhook with userdata
+    try {
+      await fetch('https://n8n.contextaware.xyz/webhook/a444ecf0-d162-4cf4-a546-89fcbfd3624d', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...leadData,
+          sessionId,
+          timestamp: new Date().toISOString(),
+          source: 'chatbot_gate'
+        }),
+      })
+    } catch (error) {
+      console.error('Error sending lead data to new webhook:', error)
+      // We continue even if the webhook fails to not block the user
     }
 
     localStorage.setItem('lead_data', JSON.stringify(leadData))
@@ -125,8 +144,15 @@ export default function Chatbot() {
       }
 
       const data = await response.json()
-      const assistantResponse = data.output || data.response || data.text || JSON.stringify(data)
+      let assistantResponse = data.output || data.response || data.text || JSON.stringify(data)
       
+      // Ensure double newlines for markdown paragraphs
+      assistantResponse = assistantResponse.replace(/\\n/g, '\n').replace(/\n(?!\n)/g, '\n\n')
+
+      // Detect raw image URLs and convert them to markdown image syntax
+      const imageRegex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp|svg|bmp))(?!\))/gi
+      assistantResponse = assistantResponse.replace(imageRegex, (url) => `![Image](${url})`)
+
       setMessages((prev) => [...prev, { role: 'assistant', content: assistantResponse }])
     } catch (error) {
       console.error('Chat error:', error)

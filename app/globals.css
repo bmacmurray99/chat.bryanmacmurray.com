@@ -521,6 +521,15 @@ a {
   opacity: 0.8;
 }
 
+.markdown-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 0.75rem 0;
+  border: 1px solid var(--border);
+  display: block;
+}
+
 .markdown-content table {
   width: 100%;
   border-collapse: collapse;

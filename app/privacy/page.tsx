@@ -36,12 +36,31 @@ export default function PrivacyPolicy() {
           Information provided to the chatbot may be used to create events and appointments in <strong>Google Calendar</strong>. By providing your details, you consent to this data being used for scheduling purposes.
         </p>
       </section>
+      <section style={{ marginBottom: '2.5rem' }}>
+        <h2 style={{ marginBottom: '1rem' }}>First Party Data Collection</h2>
+        <p style={{ marginBottom: '1rem', opacity: 0.9 }}>
+          As part of the function of this website, we collect the following data:
+        </p>
+        <ul>
+          <li><strong>Name</strong></li>
+          <li><strong>Email Address</strong></li>
+          <li><strong>Company Name</strong></li>
+          <li><strong>Chat Logs</strong></li>
+          </ul>
+        <p style={{ marginBottom: '1rem', opacity: 0.9 }}>
+          These details and chat logs are transmitted to the operators of this website for the purpose of analysis, quality assurance, and product improvement. 
+        </p>
+      </section>
 
       <section style={{ marginBottom: '2.5rem' }}>
         <h2 style={{ marginBottom: '1rem' }}>Third-Party Services</h2>
         <p style={{ opacity: 0.9 }}>
-          We use third-party services, including n8n and Google Calendar, to process your requests and manage scheduling. We do not provide absolute guarantees regarding the security or storage of data processed by these third-party systems.
+          We use third-party services to enable analytics data. We do not provide absolute guarantees regarding the security or storage of data processed by these third-party systems. These third-party systems include the following:
         </p>
+        <ul>
+          <li><strong>Google:</strong> This website uses Google Analytics, Google Tag Manager, and Gemini LLM models</li>
+          <li><strong>Microsoft:</strong> Microsoft Clarity is used for UX analytics and session playback</li>
+        </ul>
       </section>
 
       <div style={{ marginTop: '4rem', padding: '2rem 0', borderTop: '1px solid var(--border)' }}>
