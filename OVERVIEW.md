@@ -80,7 +80,18 @@ Development is managed through a structured **Notion Project** integration:
 
 ---
 
-## 7. Core Dependencies
+## 7. Current Roadmap & UX Focus
+
+The current phase of development focuses on **Refining UX** to ensure a high-quality interaction across all devices.
+
+### Key Objectives:
+- **Desktop Stability:** Resolving UI "judder" during real-time message typing.
+- **Mobile Fluidity:** Fixing scrolling behaviors within the chatbot message area on mobile devices.
+- **Input Accessibility:** Ensuring the chatbot input box remains pinned and accessible when the mobile keyboard is engaged.
+
+---
+
+## 8. Core Dependencies
 
 | Dependency | Purpose |
 | :--- | :--- |
