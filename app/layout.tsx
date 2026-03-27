@@ -59,8 +59,9 @@ export default function RootLayout({
           </main>
           <footer className="container" style={{ marginTop: '5rem', padding: '2rem 0', borderTop: '1px solid var(--border)', textAlign: 'center', opacity: 0.6 }}>
             <p>&copy; 2026 Bryan MacMurray</p>
-            <nav style={{ marginTop: '1rem' }}>
+            <nav style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
               <a href="/privacy" style={{ fontSize: '0.8rem', textDecoration: 'underline' }}>Privacy Policy</a>
+              <a href="/terms" style={{ fontSize: '0.8rem', textDecoration: 'underline' }}>Terms & Conditions</a>
             </nav>
           </footer>
         </Providers>

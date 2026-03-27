@@ -41,14 +41,21 @@ export default function PrivacyPolicy() {
         <p style={{ marginBottom: '1rem', opacity: 0.9 }}>
           As part of the function of this website, we collect the following data:
         </p>
-        <ul>
-          <li><strong>Name</strong></li>
-          <li><strong>Email Address</strong></li>
-          <li><strong>Company Name</strong></li>
-          <li><strong>Chat Logs</strong></li>
-          </ul>
+        <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem', opacity: 0.9 }}>
+          <li style={{ marginBottom: '0.5rem' }}><strong>Name</strong></li>
+          <li style={{ marginBottom: '0.5rem' }}><strong>Email Address</strong></li>
+          <li style={{ marginBottom: '0.5rem' }}><strong>Phone Number</strong></li>
+          <li style={{ marginBottom: '0.5rem' }}><strong>Company Name</strong></li>
+          <li style={{ marginBottom: '0.5rem' }}><strong>Chat Logs</strong></li>
+        </ul>
         <p style={{ marginBottom: '1rem', opacity: 0.9 }}>
           These details and chat logs are transmitted to the operators of this website for the purpose of analysis, quality assurance, and product improvement. 
+        </p>
+        <p style={{ marginBottom: '1rem', opacity: 0.9 }}>
+          <strong>SMS Privacy:</strong> We do not sell or share your mobile information with third parties for marketing or promotional purposes. All the above categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.
+        </p>
+        <p style={{ marginBottom: '1rem', opacity: 0.9 }}>
+          Please see our <a href="/terms" style={{ color: 'var(--accent)', textDecoration: 'underline' }}>Terms & Conditions</a> for more details on SMS services.
         </p>
       </section>
 
