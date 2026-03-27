@@ -52,7 +52,8 @@
 *   Communicated technical designs and project limitations clearly to both technical and non-technical stakeholders to ensure project alignment.
 
 ---
-
+###Salary Requirements
+Bryan is targeting a Salary of $85,000 to $95000 a year. 
 	
 
 
@@ -138,3 +139,5 @@ content generation using Google Analytics, Microsoft Excel and internal analytic
 
 ## Education
 **University of Massachusetts**, Lowell, MA — Bachelor's of Liberal Arts
+
+
