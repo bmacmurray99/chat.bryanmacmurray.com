@@ -521,8 +521,8 @@ a {
   opacity: 0.8;
 }
 
-.markdown-content img {
-  max-width: 40%;
+.chatbot-image {
+  max-width: 100%;
   height: auto;
   border-radius: 8px;
   margin: 0.75rem 0;
@@ -532,7 +532,12 @@ a {
   transition: opacity 0.2s;
 }
 
-.markdown-content img:hover {
+.chatbot-image-link {
+  display: block;
+  max-width: 40%;
+}
+
+.chatbot-image:hover {
   opacity: 0.9;
 }
 

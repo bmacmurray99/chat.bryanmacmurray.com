@@ -150,7 +150,9 @@ export default function Chatbot() {
       assistantResponse = assistantResponse.replace(/\\n/g, '\n').replace(/\n(?!\n)/g, '\n\n')
 
       // Detect raw image URLs and convert them to markdown image syntax
-      const imageRegex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|webp|svg|bmp))(?!\))/gi
+      // Matches http/https URLs ending in common image extensions, potentially followed by query params
+      // Negative lookbehind for ![( and negative lookahead for ) ensures we don't double-wrap existing markdown images
+      const imageRegex = /(?<![!\[]\()https?:\/\/[^\s\)]+?\.(?:png|jpg|jpeg|gif|webp|svg|bmp)(?:\?[^\s\)]+)?(?!\))/gi
       assistantResponse = assistantResponse.replace(imageRegex, (url: string) => `![Image](${url})`)
 
       setMessages((prev) => [...prev, { role: 'assistant', content: assistantResponse }])
@@ -231,8 +233,8 @@ export default function Chatbot() {
                     rehypePlugins={[rehypeRaw]}
                     components={{
                       img: ({node, ...props}) => (
-                        <a href={props.src} target="_blank" rel="noopener noreferrer">
-                          <img {...props} alt={props.alt || 'Chatbot Image'} />
+                        <a href={props.src} target="_blank" rel="noopener noreferrer" className="chatbot-image-link">
+                          <img {...props} alt={props.alt || 'Chatbot Image'} className="chatbot-image" />
                         </a>
                       )
                     }}
