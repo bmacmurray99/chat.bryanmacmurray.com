@@ -16,6 +16,7 @@ The chatbot serves as an interactive bridge between users and the site's content
 - **Processing:** Real-time intent analysis and response generation handled by backend AI agents.
 - **Rendering:** Full support for Markdown, GitHub Flavored Markdown (GFM), and responsive media.
 - **Interface:** Custom-built React components designed for low-latency feedback.
+- **Knowledge Base:** [Resume](/resume-full.md) and [Chatbot Details](/server-details.md) files served on this site provide the RAG knowledge base for the chatbot. 
 
 ### Security & Privacy
 - **Encrypted Communication:** All data transfer between the client and backend services is conducted over secure HTTPS connections.
@@ -25,6 +26,6 @@ The chatbot serves as an interactive bridge between users and the site's content
 ## 3. Tech Stack
 - **Framework:** Next.js (TypeScript)
 - **Styling:** Vanilla CSS
-- **Workflow Automation:** n8n
+- **Workflow Automation:** n8n using Gemini API, RAG for resume and server detail retrieval, and agent tools. 
 - **Data Integration:** Secure APIs (Notion)
 - **Hosting:** Static Site Deployment
