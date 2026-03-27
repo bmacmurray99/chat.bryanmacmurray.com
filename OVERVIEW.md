@@ -38,7 +38,11 @@ The chatbot is the primary interactive element, acting as a bridge between the u
 2. **Session Identification:** A unique `sessionId` is generated per client session to allow the n8n backend to maintain conversation memory.
 3. **Webhook Execution:** An asynchronous `fetch` call is made to a specific n8n webhook endpoint.
 4. **Response Parsing:** The system dynamically handles various response keys (`output`, `response`, `text`) to ensure compatibility with different n8n workflow outputs.
-5. **Markdown Rendering:** `react-markdown` with `remark-gfm` and `rehype-raw` is used to render rich text, tables, and links returned by the AI.
+5. **Markdown & Image Rendering:** 
+   - `react-markdown` with `remark-gfm` and `rehype-raw` is used to render rich text, tables, and links returned by the AI.
+   - **Image Support:** Post-processing detects raw image URLs and converts them to Markdown syntax.
+   - **Image Styling:** Images are restricted to **40% width** of the chatbox and wrapped in links to **open in a new tab** when clicked.
+   - **Formatting Fix:** A regex-based normalization step ensures double-newlines for correct paragraph and image separation in the renderer.
 
 ---
 
@@ -61,10 +65,20 @@ next build && (rm -rf dist || true) && mv out dist
 1. **`next build`**: Triggers the standard Next.js build and static export to the `out/` folder.
 2. **`rm -rf dist`**: Clears previous build artifacts.
 3. **`mv out dist`**: Moves the production-ready files to `dist/`, which is the directory typically tracked or used by the deployment agent for GitHub Pages.
+4. **Build Safety:** Strict TypeScript typing is required, particularly for internal string manipulations and regex callbacks, to ensure build stability in production environments (e.g., Heroku, Vercel).
 
 ---
 
-## 6. Core Dependencies
+## 6. Project Management & Tracking
+
+Development is managed through a structured **Notion Project** integration:
+- **Project Central:** [Website Project: AI Portfolio](https://www.notion.so/32f62f842a328101b94af40f1930d7d1)
+- **Live Task Tracking:** [Project Tasks Database](https://www.notion.so/7014af3c5fea4b3d90a129da518fc2c7)
+- **Workflow:** Tasks are prioritized and updated directly via the AI agent, ensuring the project state is always synchronized with the codebase.
+
+---
+
+## 7. Core Dependencies
 
 | Dependency | Purpose |
 | :--- | :--- |
