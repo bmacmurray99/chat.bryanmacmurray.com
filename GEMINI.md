@@ -1,9 +1,10 @@
 # Project Overview: Bryan MacMurray's AI Portfolio
 
-This project is a personal portfolio and interactive resume for Bryan MacMurray. It is built using **Next.js 14** with **TypeScript** and **Vanilla CSS**. The site is designed for static hosting (e.g., GitHub Pages) using Next.js's `output: 'export'` feature.
+This project is a personal portfolio and interactive resume for Bryan MacMurray. It is built using **Next.js 14** with **TypeScript** and **Vanilla CSS**. The site is designed for static hosting (e.g., Vercel, Netlify, or self-hosted) using Next.js's `output: 'export'` feature.
 
 ### Key Features
-- **AI Chatbot:** An interactive assistant that uses an external **n8n** webhook (`https://n8n.contextaware.xyz`) to answer questions about Bryan's experience and resume.
+- **AI Chatbot:** An interactive assistant that uses an external **n8n** backend (`https://n8n.contextaware.xyz`) to answer questions about Bryan's experience and resume.
+- **Lead Capture:** Collects user details via a gate mechanism and stores them in a **Notion User Database** via an n8n webhook.
 - **Static Resume:** A dedicated resume page (`/resume`) and markdown versions available in the `public/` folder (`resume.md`, `resume-full.md`).
 - **Google Calendar Integration:** Embedded appointment scheduling for booking meetings.
 - **SEO/GEO Optimization:** Includes Schema.org structured data (JSON-LD) for better visibility in search engines and AI agents.
@@ -56,7 +57,7 @@ npm run lint
 
 ### Routing
 - Uses the **Next.js App Router**.
-- **Trailing Slashes:** Enabled in `next.config.js` (`trailingSlash: true`) to ensure compatibility with static hosting environments like GitHub Pages.
+- **Trailing Slashes:** Enabled in `next.config.js` (`trailingSlash: true`) to ensure compatibility with most static hosting environments.
 
 ### Component Structure
 - **`app/`**: Contains page definitions (`page.tsx`) and layouts (`layout.tsx`).

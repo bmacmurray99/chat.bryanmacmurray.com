@@ -4,12 +4,13 @@ This document provides a technical deep-dive into the architecture, integration 
 
 ## 1. System Architecture
 
-The application is a **Decoupled Static Frontend** that interacts with an external **Automation Backend (n8n)**. 
+The application is a **Decoupled Static Frontend** that interacts with an external **n8n Automation Backend**. 
 
 ### Core Components:
 - **Frontend:** Next.js 14 (App Router) with TypeScript.
-- **Backend:** n8n Workflow Engine (External).
-- **Storage/Hosting:** Static files served via GitHub Pages.
+- **Backend:** **n8n Workflow Engine** hosting AI agents and data processing logic.
+- **Data Storage:** User leads and session data are stored in **Notion Databases** via n8n integrations.
+- **Storage/Hosting:** Static files served via the production build.
 - **SEO/GEO Layer:** JSON-LD structured data for search and AI agent indexing.
 
 ---
@@ -31,14 +32,15 @@ The application is a **Decoupled Static Frontend** that interacts with an extern
 
 ## 3. AI & Chatbot Integration
 
-The chatbot is the primary interactive element, acting as a bridge between the user and Bryan's professional data.
+The chatbot is the primary interactive element, acting as a bridge between the user and Bryan's professional data. It uses **n8n** as the backend for both intent processing and persistent data storage.
 
 ### Request Pipeline:
 1. **Payload Construction:** The frontend gathers text input and optional file attachments using the `FormData` API.
 2. **Session Identification:** A unique `sessionId` is generated per client session to allow the n8n backend to maintain conversation memory.
 3. **Webhook Execution:** An asynchronous `fetch` call is made to a specific n8n webhook endpoint.
-4. **Response Parsing:** The system dynamically handles various response keys (`output`, `response`, `text`) to ensure compatibility with different n8n workflow outputs.
-5. **Markdown & Image Rendering:** 
+4. **Lead Capture & Storage:** When a user submits the lead gate form, n8n processes the webhook and creates a new record in the **Notion User Database**, ensuring structured tracking of all potential leads.
+5. **Response Parsing:** The system dynamically handles various response keys (`output`, `response`, `text`) to ensure compatibility with different n8n workflow outputs.
+6. **Markdown & Image Rendering:** 
    - `react-markdown` with `remark-gfm` and `rehype-raw` is used to render rich text, tables, and links returned by the AI.
    - **Image Support:** Post-processing detects raw image URLs and converts them to Markdown syntax.
    - **Image Styling:** Images are restricted to **40% width** of the chatbox and wrapped in links to **open in a new tab** when clicked.
@@ -64,7 +66,7 @@ next build && (rm -rf dist || true) && mv out dist
 
 1. **`next build`**: Triggers the standard Next.js build and static export to the `out/` folder.
 2. **`rm -rf dist`**: Clears previous build artifacts.
-3. **`mv out dist`**: Moves the production-ready files to `dist/`, which is the directory typically tracked or used by the deployment agent for GitHub Pages.
+3. **`mv out dist`**: Moves the production-ready files to `dist/`, which is the directory typically used for deployment.
 4. **Build Safety:** Strict TypeScript typing is required, particularly for internal string manipulations and regex callbacks, to ensure build stability in production environments (e.g., Heroku, Vercel).
 
 ---

@@ -4,7 +4,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Enable trailingSlash for better compatibility with static hosting (GitHub Pages)
+  // Enable trailingSlash for better compatibility with static hosting
   trailingSlash: true,
 };
 
